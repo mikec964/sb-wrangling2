@@ -36,7 +36,7 @@ The embarked column has some missing values, which are known to correspond to
 passengers who actually embarked at Southampton. Find the missing values and 
 replace them with S.
 
-FWIW, some rows that must be fixed: 169, 284
+FWIW, some rows to fix: 169, 284
 ```{r}
 print(titanic$embarked[168:170])
 for(p in 1:length(titanic$embarked)) {
@@ -44,3 +44,20 @@ for(p in 1:length(titanic$embarked)) {
 }
 print(titanic$embarked[168:170])
 ```
+
+
+# Age
+Calculate the mean of the Age column and use that value to populate the missing 
+values.
+
+FWIW, some rows to fix: 16, 41
+```{r}
+print(titanic$age[15:17])
+age.m <- mean(titanic$age, na.rm=TRUE)
+for(p in 1:length(titanic$age)) {
+  if(is.na(titanic$age[p])) { titanic$age[p] <- age.m }
+}
+print(titanic$age[15:17])
+```
+
+

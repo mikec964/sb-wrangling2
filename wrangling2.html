@@ -144,7 +144,7 @@ titanic &lt;- titanic_orig</code></pre>
 <div id="port-of-embarcation" class="section level1">
 <h1>Port of embarcation</h1>
 <p>The embarked column has some missing values, which are known to correspond to passengers who actually embarked at Southampton. Find the missing values and replace them with S.</p>
-<p>FWIW, some rows that must be fixed: 169, 284</p>
+<p>FWIW, some rows to fix: 169, 284</p>
 <pre class="r"><code>print(titanic$embarked[168:170])</code></pre>
 <pre><code>## [1] S   C
 ## Levels:  C Q S</code></pre>
@@ -154,6 +154,19 @@ titanic &lt;- titanic_orig</code></pre>
 print(titanic$embarked[168:170])</code></pre>
 <pre><code>## [1] S S C
 ## Levels:  C Q S</code></pre>
+</div>
+<div id="age" class="section level1">
+<h1>Age</h1>
+<p>Calculate the mean of the Age column and use that value to populate the missing values.</p>
+<p>FWIW, some rows to fix: 16, 41</p>
+<pre class="r"><code>print(titanic$age[15:17])</code></pre>
+<pre><code>## [1] 80 NA 24</code></pre>
+<pre class="r"><code>age.m &lt;- mean(titanic$age, na.rm=TRUE)
+for(p in 1:length(titanic$age)) {
+  if(is.na(titanic$age[p])) { titanic$age[p] &lt;- age.m }
+}
+print(titanic$age[15:17])</code></pre>
+<pre><code>## [1] 80.00000 29.88113 24.00000</code></pre>
 </div>
 
 
