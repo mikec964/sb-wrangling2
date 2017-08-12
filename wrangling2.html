@@ -133,6 +133,7 @@ $(document).ready(function () {
 <li>Age</li>
 <li>Lifeboat</li>
 <li>Cabin</li>
+<li>Save the data</li>
 </ol>
 </div>
 <div id="load-the-data" class="section level1">
@@ -180,6 +181,26 @@ print(titanic$boat[1:6])</code></pre>
 }
 print(titanic$boat[1:6])</code></pre>
 <pre><code>## [1] &quot;2&quot;    &quot;11&quot;   &quot;None&quot; &quot;None&quot; &quot;None&quot; &quot;3&quot;</code></pre>
+</div>
+<div id="cabin" class="section level1">
+<h1>Cabin</h1>
+<p>Create a new column has_cabin_number which has 1 if there is a cabin number, and 0 otherwise.</p>
+<p>FYI, rows without cabins: 10, 14</p>
+<pre class="r"><code>titanic$cabin &lt;- as.character(titanic$cabin)
+print(titanic$cabin[1:6])</code></pre>
+<pre><code>## [1] &quot;B5&quot;      &quot;C22 C26&quot; &quot;C22 C26&quot; &quot;C22 C26&quot; &quot;C22 C26&quot; &quot;E12&quot;</code></pre>
+<pre class="r"><code>has_cabin &lt;- c()
+for(p in 1:length(titanic$cabin)) {
+  has_cabin &lt;- append(has_cabin, if_else(titanic$cabin[p] == &quot;&quot;, 0, 1))
+}
+titanic &lt;- bind_cols(titanic, has_cabin_number = has_cabin)
+print(titanic$has_cabin_number[1:6])</code></pre>
+<pre><code>## [1] 1 1 1 1 1 1</code></pre>
+</div>
+<div id="save-data" class="section level1">
+<h1>Save data</h1>
+<p>And save it as <em>titanic_clean.csv</em>.</p>
+<pre class="r"><code>write.csv(titanic, &quot;titanic_clean.csv&quot;)</code></pre>
 </div>
 
 

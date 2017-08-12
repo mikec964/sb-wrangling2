@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
 library(readr)
 ```
 
@@ -20,6 +21,7 @@ we'll look at the data from the Titanic and fill in missing data.
 #. Age
 #. Lifeboat
 #. Cabin
+#. Save the data
 
 
 # Load the data
@@ -72,4 +74,28 @@ for(p in 1:length(titanic$boat)) {
   if(titanic$boat[p] == "") { titanic$boat[p] <- "None" }
 }
 print(titanic$boat[1:6])
+```
+
+
+# Cabin
+Create a new column has_cabin_number which has 1 if there is a cabin number, 
+and 0 otherwise.
+
+FYI, rows without cabins: 10, 14
+```{r}
+titanic$cabin <- as.character(titanic$cabin)
+print(titanic$cabin[1:6])
+has_cabin <- c()
+for(p in 1:length(titanic$cabin)) {
+  has_cabin <- append(has_cabin, if_else(titanic$cabin[p] == "", 0, 1))
+}
+titanic <- bind_cols(titanic, has_cabin_number = has_cabin)
+print(titanic$has_cabin_number[1:6])
+```
+
+
+# Save data
+And save it as *titanic_clean.csv*.
+```{r}
+write.csv(titanic, "titanic_clean.csv")
 ```
