@@ -27,7 +27,20 @@ We're going to load the original Excel spreadsheet, *titanic3.xls*. We'll
 save an as-is copy as *titanic_original.csv*.
 ```{r}
 titanic_orig <- read.csv("titanic3_original.csv")
-titanic_clean <- titanic_orig
+titanic <- titanic_orig
 ```
 
 
+# Port of embarcation
+The embarked column has some missing values, which are known to correspond to
+passengers who actually embarked at Southampton. Find the missing values and 
+replace them with S.
+
+FWIW, some rows that must be fixed: 169, 284
+```{r}
+print(titanic$embarked[168:170])
+for(p in 1:length(titanic$embarked)) {
+  if(titanic$embarked[p] == "") { titanic$embarked[p] <- "S" }
+}
+print(titanic$embarked[168:170])
+```

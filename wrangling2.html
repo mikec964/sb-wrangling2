@@ -138,6 +138,22 @@ $(document).ready(function () {
 <div id="load-the-data" class="section level1">
 <h1>Load the data</h1>
 <p>We’re going to load the original Excel spreadsheet, <em>titanic3.xls</em>. We’ll save an as-is copy as <em>titanic_original.csv</em>.</p>
+<pre class="r"><code>titanic_orig &lt;- read.csv(&quot;titanic3_original.csv&quot;)
+titanic &lt;- titanic_orig</code></pre>
+</div>
+<div id="port-of-embarcation" class="section level1">
+<h1>Port of embarcation</h1>
+<p>The embarked column has some missing values, which are known to correspond to passengers who actually embarked at Southampton. Find the missing values and replace them with S.</p>
+<p>FWIW, some rows that must be fixed: 169, 284</p>
+<pre class="r"><code>print(titanic$embarked[168:170])</code></pre>
+<pre><code>## [1] S   C
+## Levels:  C Q S</code></pre>
+<pre class="r"><code>for(p in 1:length(titanic$embarked)) {
+  if(titanic$embarked[p] == &quot;&quot;) { titanic$embarked[p] &lt;- &quot;S&quot; }
+}
+print(titanic$embarked[168:170])</code></pre>
+<pre><code>## [1] S S C
+## Levels:  C Q S</code></pre>
 </div>
 
 
