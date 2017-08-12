@@ -61,3 +61,15 @@ print(titanic$age[15:17])
 ```
 
 
+# Lifeboats
+Fill empty slots with "None".
+
+FWIW, some rows to fix: 3, 4, 5
+```{r}
+titanic$boat <- as.character(titanic$boat)
+print(titanic$boat[1:6])
+for(p in 1:length(titanic$boat)) {
+  if(titanic$boat[p] == "") { titanic$boat[p] <- "None" }
+}
+print(titanic$boat[1:6])
+```
