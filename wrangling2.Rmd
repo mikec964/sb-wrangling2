@@ -1,0 +1,28 @@
+---
+title: "wrangling2.Rmd"
+author: "mikec964"
+date: "August 12, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Overview
+This is an exercise for the Springboard Data Foundations course. In each step
+we'll look at the data from the Titanic and fill in missing data.
+
+0. Load the data
+#. Port of embarcation
+#. Age
+#. Lifeboat
+#. Cabin
+
+
+# Load the data
+We're going to load the original Excel spreadsheet, *titanic3.xls*. We'll
+save an as-is copy as *titanic_original.csv*.
+```{r}
+```
